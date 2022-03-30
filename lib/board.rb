@@ -54,6 +54,14 @@ class Board
     board_hash[column.to_sym].include?('.')
   end
 
+  def add_piece(column, piece)
+    # num_empty_spots = board_hash[column].count(".")
+    board_hash[column].push(piece)
+    board_hash[column].shift
+
+
+  end
+
   #   i = 0
   #   matrix = Array.new(7) { Array.new(7, '.') }
   #   matrix.each do |sub|
