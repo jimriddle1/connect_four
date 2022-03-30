@@ -69,7 +69,7 @@ class Board
       puts "Invalid input, must be A-G."
       player_turn
     end
-    if is_column_full?(input) == false
+    if is_column_full?(input)
       puts "Invalid input, column full, choose another column."
       player_turn
     end
