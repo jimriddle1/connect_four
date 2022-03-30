@@ -54,6 +54,10 @@ class Board
     board_hash[column.to_sym].include?('.')
   end
 
+  def add_piece(column)
+    
+  end
+
   #   i = 0
   #   matrix = Array.new(7) { Array.new(7, '.') }
   #   matrix.each do |sub|
