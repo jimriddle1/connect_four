@@ -60,7 +60,21 @@ RSpec.describe Board do
     expect(board.board_hash[:A][5]).to eq("X")
     expect(board.board_hash[:A][4]).to eq("X")
 
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
+  end
+
+  it "checks to see a valid_input" do
+    board = Board.new
+    # board.is_valid_input?(:B)
+    # require 'pry'; binding.pry
+    expect(board.is_valid_input?(:A)).to eq (true)
+
+    6.times do
+      board.add_piece(:A, "X")
+    end
+    expect(board.is_valid_input?(:A)).to eq (false)
+
+    # require 'pry'; binding.pry
   end
 
 

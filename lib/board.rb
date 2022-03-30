@@ -21,7 +21,6 @@ class Board
   # end
 
   def print_board
-
     puts "ABCDEFG"
     counter = 0
     6.times do |counter|
@@ -34,10 +33,7 @@ class Board
     return
   end
 
-  def place_piece(column)
 
-
-  end
 
   def get_user_input
     puts "Enter A-G to place a piece:"
@@ -45,9 +41,17 @@ class Board
 
   end
 
-  def is_valid_input?(column)
-    valid_column_array = ['A','B','C','D','E','F','G']
-    valid_column_array.include?(column)
+  def is_valid_input?(input_column)
+    valid_column_array = []
+    # require 'pry'; binding.pry
+    board_hash.keys.each do |check_column|
+      if board_hash[check_column].count(".") > 0
+        valid_column_array.push(check_column)
+      end
+    end
+      require 'pry'; binding.pry
+
+      return valid_column_array.include?(input_column)
   end
 
   def is_column_full?(column)
@@ -58,25 +62,18 @@ class Board
     # num_empty_spots = board_hash[column].count(".")
     board_hash[column].push(piece)
     board_hash[column].shift
+  end
 
+  def player_turn
+    input = get_user_input
+    if is_valid_input(input)
+      #do something
+    end
 
   end
 
-  #   i = 0
-  #   matrix = Array.new(7) { Array.new(7, '.') }
-  #   matrix.each do |sub|
-  #     sub.each do |coord|
-  #     print coord
-  #     i += 1
-  #     if (i == 7)
-  #       puts ''
-  #       i = 0
-  #     end
-  #   end
-  # end
-
-  end
+end
 
 board = Board.new
-board.print_board
+# board.print_board
 # require 'pry'; binding pry
