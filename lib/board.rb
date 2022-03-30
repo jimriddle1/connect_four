@@ -37,8 +37,7 @@ class Board
 
   def get_user_input
     puts "Enter A-G to place a piece:"
-    user_input = gets.chomp.upcase
-
+    user_input = gets.chomp.upcase.to_sym
   end
 
   def is_valid_input?(input_column)
@@ -49,7 +48,7 @@ class Board
         valid_column_array.push(check_column)
       end
     end
-      require 'pry'; binding.pry
+      # require 'pry'; binding.pry
 
       return valid_column_array.include?(input_column)
   end
@@ -59,21 +58,30 @@ class Board
   end
 
   def add_piece(column, piece)
-    # num_empty_spots = board_hash[column].count(".")
-    board_hash[column].push(piece)
-    board_hash[column].shift
+    num_empty_spots = board_hash[column].count(".") - 1
+    board_hash[column][num_empty_spots] = piece
   end
 
   def player_turn
     input = get_user_input
+    # require 'pry'; binding.pry
+    if is_valid_input?(input)
+      add_piece(input, "X")
+    else
+      puts "Please put in a valid input"
+      player_turn
+    end
+  end
+
+  def computer_turn
+    input = get_user_input
     if is_valid_input(input)
       #do something
     end
-
   end
 
 end
 
-board = Board.new
+# board = Board.new
 # board.print_board
 # require 'pry'; binding pry
