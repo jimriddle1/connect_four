@@ -54,7 +54,8 @@ class Board
   end
 
   def is_column_full?(column)
-    board_hash[column.to_sym].include?('.')
+    # require 'pry'; binding.pry
+    @board_hash[column.to_sym].include?('.')
   end
 
   def add_piece(column, piece)
@@ -62,18 +63,24 @@ class Board
     board_hash[column][num_empty_spots] = piece
   end
 
+  def within_key_range(input)
+    @board_hash.keys.include?(input)
+  end
+
   def player_turn
-    input = get_user_input
+    user_input = get_user_input
     # require 'pry'; binding.pry
-    if is_valid_input?(input) == false
+
+    if within_key_range(user_input) == false
       puts "Invalid input, must be A-G."
+      # require 'pry'; binding.pry
       player_turn
-    end
-    if is_column_full?(input)
+    elsif is_column_full?(user_input) == false
       puts "Invalid input, column full, choose another column."
       player_turn
+    else
+      add_piece(user_input, "X")
     end
-    add_piece(input, "X")
   end
 
   def computer_turn
