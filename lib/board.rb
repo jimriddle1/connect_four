@@ -50,6 +50,9 @@ class Board
     valid_column_array.include?(column)
   end
 
+  def is_column_full?(column)
+    board_hash[column.to_sym].include?('.')
+  end
 
   #   i = 0
   #   matrix = Array.new(7) { Array.new(7, '.') }
