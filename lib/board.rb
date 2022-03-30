@@ -32,11 +32,27 @@ class Board
       counter += 1
     end
     return
+  end
+
+  def place_piece(column)
 
 
   end
 
+  def get_user_input
+    puts "Enter A-G to place a piece:"
+    user_input = gets.chomp.upcase
 
+  end
+
+  def is_valid_input?(column)
+    valid_column_array = ['A','B','C','D','E','F','G']
+    valid_column_array.include?(column)
+  end
+
+  def is_column_full?(column)
+    board_hash[column.to_sym].include?('.')
+  end
 
   #   i = 0
   #   matrix = Array.new(7) { Array.new(7, '.') }
