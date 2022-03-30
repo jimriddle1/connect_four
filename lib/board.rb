@@ -65,12 +65,15 @@ class Board
   def player_turn
     input = get_user_input
     # require 'pry'; binding.pry
-    if is_valid_input?(input)
-      add_piece(input, "X")
-    else
-      puts "Please put in a valid input"
+    if is_valid_input?(input) == false
+      puts "Invalid input, must be A-G."
       player_turn
     end
+    if is_column_full?(input)
+      puts "Invalid input, column full, choose another column."
+      player_turn
+    end
+    add_piece(input, "X")
   end
 
   def computer_turn
@@ -79,6 +82,20 @@ class Board
       #do something
     end
   end
+
+  def check_win_condition(array)
+  counter = 0
+  x_counter = 1
+  array.each do |index|
+    if array[counter] == "x" && array[counter + 1] == "x"
+      x_counter += 1
+      # require 'pry': binding.pry
+    end
+    counter += 1
+  end
+  return x_counter
+
+end
 
 end
 
