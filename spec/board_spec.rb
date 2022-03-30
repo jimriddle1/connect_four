@@ -88,7 +88,7 @@ RSpec.describe Board do
   it "has the player take a turn" do
     board = Board.new
     board.player_turn
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
     expect(board.board_hash).to eq({A: [".",".",".",".",".","X",],
                    B: [".",".",".",".",".",".",],
                    C: [".",".",".",".",".",".",],
