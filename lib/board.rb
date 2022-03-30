@@ -66,11 +66,13 @@ class Board
     input = get_user_input
     # require 'pry'; binding.pry
     if is_valid_input?(input)
-      add_piece(input, "X")
-    else
-      puts "Please put in a valid input"
+      puts "Invalid input, must be A-G."
       player_turn
     end
+    if is_column_full?(input)
+      puts "Invalid input, column full, choose another column."
+    end
+    add_piece(input, "X")
   end
 
   def computer_turn
