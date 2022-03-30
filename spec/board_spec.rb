@@ -27,5 +27,16 @@ RSpec.describe Board do
     require 'pry'; binding.pry
   end
 
+  it "checks if column is available" do
+    board = Board.new
+    expect(board.is_column_full?('B')).to eq(true)
+  end
+
+  it "checks if column is unavailable" do
+    board = Board.new
+    board.board_hash[:B] = ['X','X','X','X','X','X']
+    expect(board.is_column_full?('B')).to eq(false)
+  end
+
 
 end
