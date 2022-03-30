@@ -71,6 +71,7 @@ class Board
     end
     if is_column_full?(input)
       puts "Invalid input, column full, choose another column."
+      player_turn
     end
     add_piece(input, "X")
   end
@@ -81,6 +82,20 @@ class Board
       #do something
     end
   end
+
+  def check_win_condition(array)
+  counter = 0
+  x_counter = 1
+  array.each do |index|
+    if array[counter] == "x" && array[counter + 1] == "x"
+      x_counter += 1
+      # require 'pry': binding.pry
+    end
+    counter += 1
+  end
+  return x_counter
+
+end
 
 end
 
