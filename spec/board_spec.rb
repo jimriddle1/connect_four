@@ -40,25 +40,25 @@ RSpec.describe Board do
 
   it "checks to make sure a piece has been added" do
     board = Board.new
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     expect(board.board_hash[:A].count(".")).to eq(6)
     expect(board.board_hash[:A].count("X")).to eq(0)
 
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     board.add_piece(:A,"X")
 
-    expect board.board_hash[:A].count(".").to eq(5)
-    expect board.board_hash[:A].count("X").to eq(1)
-    expect board.board_hash[:A][5].to eq("X")
+    expect(board.board_hash[:A].count(".")).to eq(5)
+    expect(board.board_hash[:A].count("X")).to eq(1)
+    expect(board.board_hash[:A][5]).to eq("X")
 
     board.add_piece(:A,"X")
 
-    expect board.board_hash[:A].count(".").to eq(5)
-    expect board.board_hash[:A].count("X").to eq(1)
-    expect board.board_hash[:A][5].to eq("X")
-    expect board.board_hash[:A][4].to eq("X")
+    expect(board.board_hash[:A].count(".")).to eq(4)
+    expect(board.board_hash[:A].count("X")).to eq(2)
+    expect(board.board_hash[:A][5]).to eq("X")
+    expect(board.board_hash[:A][4]).to eq("X")
 
     require 'pry'; binding.pry
   end
