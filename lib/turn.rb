@@ -16,6 +16,30 @@ attr_reader :board
   end
 
   def check_horizontal
+    winner_array = []
+    winner = ""
+    #binding.pry
+    index_counter = 0
+    7.times do
+      check_array = []
+      board.board_hash.keys.each do |key|
+
+        check_array << (board.board_hash[key][index_counter])
+      end
+      index_counter += 1
+      #binding.pry
+      winner_array << check_win_condition(check_array)
+    end
+    #binding.pry
+    if winner_array.include?("X")
+      winner = "X"
+    elsif winner_array.include?("O")
+      winner = "O"
+    else
+      winner = ""
+    end
+
+    return winner
 
   end
 
@@ -34,7 +58,7 @@ attr_reader :board
     board.board_hash.keys.each do |key|
       winner_array << check_win_condition(board.board_hash[key])
     end
-    binding.pry
+    # binding.pry
     if winner_array.include?("X")
       winner = "X"
     elsif winner_array.include?("O")
