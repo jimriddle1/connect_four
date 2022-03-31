@@ -40,18 +40,7 @@ class Board
     user_input = gets.chomp.upcase.to_sym
   end
 
-  def is_valid_input?(input_column)
-    valid_column_array = []
-    # require 'pry'; binding.pry
-    board_hash.keys.each do |check_column|
-      if board_hash[check_column].count(".") > 0
-        valid_column_array.push(check_column)
-      end
-    end
-      # require 'pry'; binding.pry
 
-      return valid_column_array.include?(input_column)
-  end
 
   def is_column_full?(column)
     # require 'pry'; binding.pry
@@ -67,27 +56,49 @@ class Board
     @board_hash.keys.include?(input)
   end
 
-  def player_turn
-    user_input = get_user_input
-    # require 'pry'; binding.pry
-
-    if within_key_range(user_input) == false
-      puts "Invalid input, must be A-G."
-      # require 'pry'; binding.pry
-      player_turn
-    elsif is_column_full?(user_input) == false
-      puts "Invalid input, column full, choose another column."
-      player_turn
+  def is_board_full?
+    if find_valid_columns == []
+      return true
     else
-      add_piece(user_input, "X")
+      return false
+    end
+
+
+  end
+
+  def player_turn
+    if is_board_full?
+      print_board
+      puts "Board full! DRAW!"
+    else
+
+      user_input = get_user_input
+      # require 'pry'; binding.pry
+
+      if within_key_range(user_input) == false
+        puts "Invalid input, must be A-G."
+        # require 'pry'; binding.pry
+        player_turn
+      elsif is_column_full?(user_input) == false
+        puts "Invalid input, column full, choose another column."
+        player_turn
+      else
+        add_piece(user_input, "X")
+        print_board
+      end
     end
   end
 
+  def find_valid_columns
+      board_hash.keys.find_all do |check_column|
+      board_hash[check_column].count(".") > 0
+      end
+  end
+
   def computer_turn
-    input = get_user_input
-    if is_valid_input(input)
-      #do something
-    end
+    computer_array = find_valid_columns.shuffle
+    add_piece(computer_array[0], 'O')
+    print_board
   end
 
   def check_win_condition(array)
@@ -101,8 +112,7 @@ class Board
     counter += 1
   end
   return x_counter
-
-end
+  end
 
 end
 
