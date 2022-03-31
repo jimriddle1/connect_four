@@ -19,11 +19,31 @@ attr_reader :board
 
   end
 
+  def check_diagonal_right
+
+  end
+
+  def check_diagonal_left
+
+  end
+
   def check_vertical
     # binding.pry
-    board.board_hash.keys.each do
-
+    winner_array = []
+    winner = ""
+    board.board_hash.keys.each do |key|
+      winner_array << check_win_condition(board.board_hash[key])
     end
+    binding.pry
+    if winner_array.include?("X")
+      winner = "X"
+    elsif winner_array.include?("O")
+      winner = "O"
+    else
+      winner = ""
+    end
+
+    return winner
 
   end
 
