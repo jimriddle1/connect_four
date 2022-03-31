@@ -4,12 +4,12 @@ require './lib/board'
 RSpec.describe Board do
 
 
-  it "exists" do
+  xit "exists" do
     board = Board.new
     expect(board).to be_an_instance_of(Board)
   end
 
-  it "has readable attributes" do
+  xit "has readable attributes" do
     board = Board.new
     # require 'pry'; binding.pry
     expect(board.board_hash).to eq({A: [".",".",".",".",".",".",],
@@ -38,7 +38,7 @@ RSpec.describe Board do
     expect(board.is_column_full?('B')).to eq(false)
   end
 
-  it "checks to make sure a piece has been added" do
+  xit "checks to make sure a piece has been added" do
     board = Board.new
     # require 'pry'; binding.pry
 
@@ -65,19 +65,19 @@ RSpec.describe Board do
     # require 'pry'; binding.pry
   end
 
-  it "checks to see a valid_input" do
-    board = Board.new
-    # board.is_valid_input?(:B)
-    # require 'pry'; binding.pry
-    expect(board.is_valid_input?(:A)).to eq (true)
+  # it "checks to see a valid_input" do
+  #   board = Board.new
+  #   # board.is_valid_input?(:B)
+  #   # require 'pry'; binding.pry
+  #   expect(board.is_valid_input?(:A)).to eq (true)
+  #
+  #   6.times do
+  #     board.add_piece(:A, "X")
+  #   end
+  #   expect(board.is_valid_input?(:A)).to eq (false)
 
-    6.times do
-      board.add_piece(:A, "X")
-    end
-    expect(board.is_valid_input?(:A)).to eq (false)
-
     # require 'pry'; binding.pry
-  end
+  #end
 
   xit "gets user input" do
     board = Board.new
@@ -99,7 +99,7 @@ RSpec.describe Board do
                   })
   end
 
-  it "checks to see if a column is full, and denies player turn" do
+  xit "checks to see if a column is full, and denies player turn" do
     board = Board.new
     # require 'pry'; binding.pry
     board.board_hash[:A] = ['X','X','X','X','X','X']
@@ -117,16 +117,46 @@ RSpec.describe Board do
                   })
   end
 
-  it "gives me an error when i put in q as my column" do
+  xit "gives me an error when i put in q as my column" do
     board = Board.new
 
     input = :Q
     # require 'pry'; binding.pry
     expect(board.within_key_range(input)).to eq(false)
     # expect(board.board_hash.keys.include?(input)).to eq(false)
+  end
 
+  it "returns an array with only available columns" do
+    board = Board.new
+    board.board_hash[:A] = ['X','X','X','X','X','X']
+    board.board_hash[:G] = ['X','X','X','X','X','X']
+    expect(board.find_valid_columns).to eq([:B, :C, :D, :E, :F])
 
   end
+
+  it "computer turn" do
+    board = Board.new
+    board.board_hash[:A] = ['X','X','X','X','X','X']
+    board.board_hash[:G] = ['X','X','X','X','X','X']
+    expect(board.find_valid_columns).to eq([:B, :C, :D, :E, :F])
+    board.computer_turn
+  end
+  it "checks to see if a column is full, and denies player turn" do
+    board = Board.new
+    # require 'pry'; binding.pry
+    board.board_hash[:A] = ['X','X','X','X','X','X']
+    board.board_hash[:B] = ['X','X','X','X','X','X']
+    board.board_hash[:C] = ['X','X','X','X','X','X']
+    board.board_hash[:D] = ['X','X','X','X','X','X']
+    board.board_hash[:E] = ['X','X','X','X','X','X']
+    board.board_hash[:F] = ['X','X','X','X','X','X']
+    board.board_hash[:G] = ['X','X','X','X','X','X']
+    board.player_turn
+    # the method above will make sure the logic returns "invalid input, column full"
+    # I will then put a piece into column B
+    # require 'pry'; binding.pry
+    expect(board.is_board_full?).to eq(true)
+    end
 
 
 
