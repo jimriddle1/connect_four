@@ -134,14 +134,14 @@ RSpec.describe Board do
 
   end
 
-  it "computer turn" do
+  xit "computer turn" do
     board = Board.new
     board.board_hash[:A] = ['X','X','X','X','X','X']
     board.board_hash[:G] = ['X','X','X','X','X','X']
     expect(board.find_valid_columns).to eq([:B, :C, :D, :E, :F])
     board.computer_turn
   end
-  it "checks to see if a column is full, and denies player turn" do
+  xit "checks to see if a column is full, and denies player turn" do
     board = Board.new
     # require 'pry'; binding.pry
     board.board_hash[:A] = ['X','X','X','X','X','X']
