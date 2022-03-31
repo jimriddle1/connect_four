@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/turn'
 require 'rspec'
+
 RSpec.describe Turn do
   it "exists" do
     board = Board.new
@@ -11,9 +12,10 @@ RSpec.describe Turn do
   xit "can take a turn" do
     board = Board.new
     turn = Turn.new(board)
-    # binding.pry
+    binding.pry
     turn.takes_turn
-    # binding.pry
+    binding.pry
+    expect(turn.board.is_board_full?). to eq(false)
   end
 
   it "checks win condition_1" do
@@ -37,20 +39,21 @@ RSpec.describe Turn do
     expect(turn.check_win_condition(board.board_hash[:A])).to eq("O")
   end
 
-  xit "checks vertical win condition" do
-    board = Board.new
-    board.board_hash[:A] = ['X','X','X','X','X','X']
-    turn = Turn.new(board)
-    expect(turn.check_vertical).to eq(true)
+  it "checks vertical win condition" do
+    board1 = Board.new
+    board1.board_hash[:A] = ['X','X','X','X','X','X']
+    turn = Turn.new(board1)
+    expect(turn.check_vertical).to eq("X")
 
-    board.board_hash[:B] = ['X','X','O','X','X','X']
-    turn = Turn.new(board)
-    expect(turn.check_vertical).to eq(false)
+    board2 = Board.new
+    board2.board_hash[:B] = ['X','X','O','X','X','X']
+    turn = Turn.new(board2)
+    expect(turn.check_vertical).to eq("")
 
-
-    board.board_hash[:A] = ['X','X','X','X','O','X']
-    turn = Turn.new(board)
-    expect(turn.check_vertical).to eq(true)
+    board3 = Board.new
+    board3.board_hash[:A] = ['X','O','O','O','O','X']
+    turn = Turn.new(board3)
+    expect(turn.check_vertical).to eq("O")
 
   end
 end
