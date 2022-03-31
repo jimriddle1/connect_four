@@ -22,13 +22,13 @@ class Board
 
   def print_board
     puts "ABCDEFG"
-    counter = 0
+    # counter = 0
     6.times do |counter|
       board_hash.keys.each do |key|
         print board_hash[key][counter]
       end
       puts ''
-      counter += 1
+      # counter += 1
     end
     return
   end
@@ -36,6 +36,7 @@ class Board
 
 
   def get_user_input
+    # user_input = ""
     puts "Enter A-G to place a piece:"
     user_input = gets.chomp.upcase.to_sym
   end
