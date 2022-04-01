@@ -43,11 +43,66 @@ attr_reader :board
 
   end
 
-  def check_diagonal_right
+  def check_diagonal_up_right
+    winner_array = []
+    winner = ""
+    #binding.pry
+    index_counter = 0
+    7.times do
+      check_array = []
+      board.board_hash.keys.each do |key|
+
+        check_array << (board.board_hash[key][index_counter])
+      end
+      index_counter += 1
+      #binding.pry
+      winner_array << check_win_condition(check_array)
+    end
+    #binding.pry
+    if winner_array.include?("X")
+      winner = "X"
+    elsif winner_array.include?("O")
+      winner = "O"
+    else
+      winner = ""
+    end
+
+    return winner
+
 
   end
 
-  def check_diagonal_left
+  def check_diagonal_down_right
+    winner_array = []
+    winner = ""
+    #binding.pry
+    #board.board_hash.keys.each do |start_key|
+        custom_key_array = [:A, :A, :A, :B, :C, :D, :E, :F, :G]
+        starting_index_array = [2, 1, 0, 0, 0, 0]
+        6.times do
+          check_array = []
+          index_counter = starting_index_array[0]
+            custom_key_array.each do |key|
+              check_array << (board.board_hash[key][index_counter])
+              binding.pry
+              index_counter += 1
+              end
+        #binding.pry
+            winner_array << check_win_condition(check_array)
+            custom_key_array.shift
+            starting_index_array.shift
+        end
+    #binding.pry
+    if winner_array.include?("X")
+      winner = "X"
+    elsif winner_array.include?("O")
+      winner = "O"
+    else
+      winner = ""
+    end
+
+    return winner
+
 
   end
 
