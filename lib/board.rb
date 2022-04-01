@@ -1,9 +1,10 @@
 class Board
   require 'rspec'
   require 'pry'
-  attr_reader :board_hash
+  attr_reader :board_hash, :board_full
 
   def initialize
+    @board_full = false
     @board_hash = {A: [".",".",".",".",".",".",],
                    B: [".",".",".",".",".",".",],
                    C: [".",".",".",".",".",".",],
@@ -70,6 +71,7 @@ class Board
   def player_turn
     if is_board_full?
       print_board
+      @board_full = true
       puts "Board full! DRAW!"
     else
 
@@ -97,9 +99,11 @@ class Board
   end
 
   def computer_turn
-    computer_array = find_valid_columns.shuffle
-    add_piece(computer_array[0], 'O')
-    print_board
+
+      computer_array = find_valid_columns.shuffle
+      add_piece(computer_array[0], 'O')
+      print_board
+    
   end
 
   def check_win_condition(array)
