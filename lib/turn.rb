@@ -9,11 +9,13 @@ attr_reader :board, :game_over
   end
 
   def takes_turn
-
     # binding.pry
     board.player_turn
-    if (check_horizontal == "X" || check_vertical == "X" || check_diagonal_2 == "X")
+    if (check_horizontal == "X" || check_vertical == "X" ||
+       check_diagonal_up_right == "X" || check_diagonal_down_right == "X") #check_diagonal_2 == "X")
       puts "Congrats! the player has won the game!"
+
+
       @game_over = true
     end
 
@@ -24,8 +26,18 @@ attr_reader :board, :game_over
     if @game_over == false
 
       board.computer_turn
-      if (check_horizontal == "O" || check_vertical == "O" || check_diagonal_2 == "O")
-        puts "Machine takeover imminent"
+      if (check_horizontal == "O" || check_vertical == "O" ||
+         check_diagonal_up_right == "O" || check_diagonal_down_right == "O")#check_diagonal_2 == "O")
+        puts ""
+        13.times do
+          print "\u{1F6A8}"
+        end
+        puts ""
+        puts "MACHINE TAKEOVER IMMINENT!"
+        13.times do
+          print "\u{1F6A8}"
+        end
+        puts ""
         @game_over = true
       end
 
@@ -65,28 +77,31 @@ attr_reader :board, :game_over
   end
 
   def check_diagonal_up_right
-
-
     winner_array = []
     winner = ""
-    #binding.pry
-    #board.board_hash.keys.each do |start_key|
-        custom_key_array = [:G, :G, :G, :F, :E, :D, :C, :B, :A]
-        starting_index_array = [2, 1, 0, 0, 0, 0]
-        6.times do
-          check_array = []
-          index_counter = starting_index_array[0]
-            custom_key_array.each do |key|
-              check_array << (board.board_hash[key][index_counter])
-              #binding.pry
-              index_counter += 1
-              end
-        #binding.pry
-            winner_array << check_win_condition(check_array)
-            custom_key_array.shift
-            starting_index_array.shift
+    custom_key_array = [6, 6, 6, 5, 4, 3]
+    starting_index_array = [2, 1, 0, 0, 0, 0]
+    length_array = [4, 5, 6, 6, 5, 4]
+      6.times do
+        check_array = []
+        index_counter = starting_index_array[0]
+        key_counter = custom_key_array[0]
+
+        length_array[0].times do
+
+          check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
+          index_counter += 1
+          key_counter -= 1
+
         end
-    #binding.pry
+        #puts check_array
+        winner_array << check_win_condition(check_array)
+        custom_key_array.shift
+        starting_index_array.shift
+        length_array.shift
+
+      end
+
     if winner_array.include?("X")
       winner = "X"
     elsif winner_array.include?("O")
@@ -124,7 +139,7 @@ attr_reader :board, :game_over
         length_array.shift
 
       end
-    
+
     if winner_array.include?("X")
       winner = "X"
     elsif winner_array.include?("O")
@@ -134,7 +149,7 @@ attr_reader :board, :game_over
     end
 
     return winner
-    
+
 
   end
 
