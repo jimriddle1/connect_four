@@ -47,44 +47,15 @@ attr_reader :board
     winner_array = []
     winner = ""
     #binding.pry
-    index_counter = 0
-    7.times do
-      check_array = []
-      board.board_hash.keys.each do |key|
-
-        check_array << (board.board_hash[key][index_counter])
-      end
-      index_counter += 1
-      #binding.pry
-      winner_array << check_win_condition(check_array)
-    end
-    #binding.pry
-    if winner_array.include?("X")
-      winner = "X"
-    elsif winner_array.include?("O")
-      winner = "O"
-    else
-      winner = ""
-    end
-
-    return winner
-
-
-  end
-
-  def check_diagonal_down_right
-    winner_array = []
-    winner = ""
-    #binding.pry
     #board.board_hash.keys.each do |start_key|
-        custom_key_array = [:A, :A, :A, :B, :C, :D, :E, :F, :G]
+        custom_key_array = [:G, :G, :G, :F, :E, :D, :C, :B, :A]
         starting_index_array = [2, 1, 0, 0, 0, 0]
         6.times do
           check_array = []
           index_counter = starting_index_array[0]
             custom_key_array.each do |key|
               check_array << (board.board_hash[key][index_counter])
-              binding.pry
+              #binding.pry
               index_counter += 1
               end
         #binding.pry
@@ -104,6 +75,43 @@ attr_reader :board
     return winner
 
 
+
+  end
+
+  def check_diagonal_down_right
+    winner_array = []
+    winner = ""
+    custom_key_array = [0, 0, 0, 1, 2, 3]
+    starting_index_array = [2, 1, 0, 0, 0, 0]
+    length_array = [4, 5, 6, 6, 5, 4]
+      6.times do
+        check_array = []
+        index_counter = starting_index_array[0]
+        key_counter = custom_key_array[0]
+
+        length_array[0].times do
+
+          check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
+          index_counter += 1
+          key_counter += 1
+
+        end
+        winner_array << check_win_condition(check_array)
+        custom_key_array.shift
+        starting_index_array.shift
+        length_array.shift
+
+      end
+    if winner_array.include?("X")
+      winner = "X"
+    elsif winner_array.include?("O")
+      winner = "O"
+    else
+      winner = ""
+    end
+
+    return winner
+    
   end
 
   def check_vertical
