@@ -60,7 +60,6 @@ class Board
     if is_board_full?
       print_board
       @board_full = true
-      puts "Board full! DRAW!"
     else
       user_input = get_user_input
       # require 'pry'; binding.pry
