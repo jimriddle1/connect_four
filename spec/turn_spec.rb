@@ -108,77 +108,9 @@ RSpec.describe Turn do
     expect(turn.check_diagonal_down_right).to eq("O")
   end
 
-  xit "converts the hash to a matrix" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['1','2','3','4','5','6']
-    board1.board_hash[:B] = ['7','8','9','10','11','12']
-    board1.board_hash[:C] = ['13','14','15','16','17','18']
-    board1.board_hash[:D] = ['19','20','21','22','23','24']
-    board1.board_hash[:E] = ['25','26','27','28','29','30']
-    board1.board_hash[:F] = ['31','32','33','34','35','36']
-    board1.board_hash[:G] = ['37','38','39','40','41','42']
-    turn = Turn.new(board1)
-    # turn.check_diagonal_2
-    expect(turn.hash_to_matrix).to eq([["1", "2", "3", "4", "5", "6"],
-                                 ["7", "8", "9", "10", "11", "12"],
-                                 ["13", "14", "15", "16", "17", "18"],
-                                 ["19", "20", "21", "22", "23", "24"],
-                                 ["25", "26", "27", "28", "29", "30"],
-                                 ["31", "32", "33", "34", "35", "36"],
-                                 ["37", "38", "39", "40", "41", "42"]])
-  end
 
-  xit "checks diag left win condition the different way_1" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['.','.','O','.','.','.']
-    board1.board_hash[:B] = ['.','.','O','.','.','.']
-    board1.board_hash[:C] = ['.','.','O','.','.','.']
-    board1.board_hash[:D] = ['.','.','X','.','.','.']
-    board1.board_hash[:E] = ['.','.','O','.','.','.']
-    board1.board_hash[:F] = ['.','.','O','.','.','.']
-    board1.board_hash[:G] = ['.','.','O','.','.','.']
-    turn = Turn.new(board1)
-    expect(turn.check_diagonal_2).to eq("")
-  end
 
-  xit "checks diag left win condition the different way_2" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['X','.','O','.','.','.']
-    board1.board_hash[:B] = ['.','X','O','.','.','.']
-    board1.board_hash[:C] = ['.','.','X','.','.','.']
-    board1.board_hash[:D] = ['.','.','X','X','.','.']
-    board1.board_hash[:E] = ['.','.','O','.','.','.']
-    board1.board_hash[:F] = ['.','.','O','.','.','.']
-    board1.board_hash[:G] = ['.','.','O','.','.','.']
-    turn = Turn.new(board1)
-    expect(turn.check_diagonal_2).to eq("X")
-  end
 
-  xit "checks diag left win condition the different way_3" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['X','.','O','.','.','.']
-    board1.board_hash[:B] = ['.','O','O','.','.','.']
-    board1.board_hash[:C] = ['.','.','X','.','.','.']
-    board1.board_hash[:D] = ['.','.','X','X','O','.']
-    board1.board_hash[:E] = ['.','.','O','O','.','.']
-    board1.board_hash[:F] = ['.','.','O','.','.','.']
-    board1.board_hash[:G] = ['.','O','O','.','.','.']
-    turn = Turn.new(board1)
-    expect(turn.check_diagonal_2).to eq("O")
-  end
-
-  xit "checks diag left win condition the different way_4" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['X','.','O','.','X','.']
-    board1.board_hash[:B] = ['.','O','O','X','.','.']
-    board1.board_hash[:C] = ['.','.','X','.','.','.']
-    board1.board_hash[:D] = ['.','X','X','X','O','.']
-    board1.board_hash[:E] = ['.','.','O','O','.','.']
-    board1.board_hash[:F] = ['.','.','X','.','.','.']
-    board1.board_hash[:G] = ['.','O','O','.','.','.']
-    turn = Turn.new(board1)
-    expect(turn.check_diagonal_2).to eq("X")
-  end
 
   it "checks diag_up_right win condition_11" do
     board1 = Board.new

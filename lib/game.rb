@@ -9,10 +9,11 @@ class Game
     if input == 'Q'
       puts "Thanks for playing!"
     elsif input == 'P'
+      @turn.board.print_board
       while @turn.game_over == false
         @turn.takes_turn
       end
-      puts "Game is over! Enter 'P' to play again or 'Q' to quit:"
+      puts "Game is over! Enter 'p' to play again or 'q' to quit:"
       user_input1 = gets.chomp.upcase
       @turn = Turn.new(board = Board.new)
       play_game(user_input1)
