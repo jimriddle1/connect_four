@@ -13,10 +13,4 @@ puts "*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "Enter p to play. Enter q to quit"
 
 user_input = gets.chomp.upcase
-# require 'pry'; binding.pry
 game.play_game(user_input)
-
-
-# 4.times do
-#   turn.takes_turn
-# end

@@ -55,6 +55,7 @@ RSpec.describe Turn do
     turn = Turn.new(board3)
     expect(turn.check_vertical).to eq("O")
   end
+
   it "checks horizontal win condition_1" do
     board1 = Board.new
     board1.board_hash[:A] = ['.','.','O','.','.','.']
@@ -67,6 +68,7 @@ RSpec.describe Turn do
     turn = Turn.new(board1)
     expect(turn.check_horizontal).to eq("O")
   end
+
   it "checks horizontal win condition_2" do
     board1 = Board.new
     board1.board_hash[:A] = ['.','.','O','.','.','.']
@@ -79,6 +81,7 @@ RSpec.describe Turn do
     turn = Turn.new(board1)
     expect(turn.check_horizontal).to eq("")
   end
+
   it "checks horizontal win condition_3" do
     board1 = Board.new
     board1.board_hash[:A] = ['X','.','O','.','.','.']
@@ -91,7 +94,6 @@ RSpec.describe Turn do
     turn = Turn.new(board1)
     expect(turn.check_horizontal).to eq("X")
   end
-
 
   xit "checks diag_down_right win condition_1" do
     board1 = Board.new
@@ -106,7 +108,7 @@ RSpec.describe Turn do
     expect(turn.check_diagonal_down_right).to eq("O")
   end
 
-  it "converts the hash to a matrix" do
+  xit "converts the hash to a matrix" do
     board1 = Board.new
     board1.board_hash[:A] = ['1','2','3','4','5','6']
     board1.board_hash[:B] = ['7','8','9','10','11','12']
@@ -118,12 +120,12 @@ RSpec.describe Turn do
     turn = Turn.new(board1)
     # turn.check_diagonal_2
     expect(turn.hash_to_matrix).to eq([["1", "2", "3", "4", "5", "6"],
- ["7", "8", "9", "10", "11", "12"],
- ["13", "14", "15", "16", "17", "18"],
- ["19", "20", "21", "22", "23", "24"],
- ["25", "26", "27", "28", "29", "30"],
- ["31", "32", "33", "34", "35", "36"],
- ["37", "38", "39", "40", "41", "42"]])
+                                 ["7", "8", "9", "10", "11", "12"],
+                                 ["13", "14", "15", "16", "17", "18"],
+                                 ["19", "20", "21", "22", "23", "24"],
+                                 ["25", "26", "27", "28", "29", "30"],
+                                 ["31", "32", "33", "34", "35", "36"],
+                                 ["37", "38", "39", "40", "41", "42"]])
   end
 
   xit "checks diag left win condition the different way_1" do
@@ -187,13 +189,9 @@ RSpec.describe Turn do
    board1.board_hash[:E] = ['25','26','27','28','29','30']
    board1.board_hash[:F] = ['31','32','33','34','35','36']
    board1.board_hash[:G] = ['37','38','39','40','41','42']
-   board1.print_board
+   # board1.print_board
     turn = Turn.new(board1)
     expect(turn.check_diagonal_up_right).to eq("")
   end
-
-
-
-
 
 end
