@@ -3,35 +3,10 @@ require './lib/board'
 require './lib/turn'
 require 'rspec'
 
+answer = rand(0..100)
+guess = nil
 
-starter_input = nil
-column_guess = nil
-
-board = Board.new
-turn = Turn.new(board)
-
-puts "Welcome to CONNECT FOUR"
-puts "Enter p to play. Enter q to quit"
-
-user_input = gets.chomp.upcase
-
-if user_input == "Q"
-  puts "Thanks for playing!"
-elsif user_input == "P"
-
-
-  while turn.game_over == false
-    turn.takes_turn
-  end
-
-
-
-else
-  puts "Invalid Input, please try again"
-  # connect_four_runner.rb
-end
-
-server = TCPServer.new(8181)
+server = TCPServer.new(8151)
 
 loop do
   puts 'Waiting for Request...'
