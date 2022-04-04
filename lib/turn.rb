@@ -11,31 +11,53 @@ attr_reader :board, :game_over
   def takes_turn
     # binding.pry
     board.player_turn
-    if (check_horizontal == "X" || check_vertical == "X" ||
-       check_diagonal_up_right == "X" || check_diagonal_down_right == "X") #check_diagonal_2 == "X")
-      puts "Congrats! the player has won the game!"
+    if board.board_full == true
+      puts ""
+      draw_emoji
+      puts "Board full! DRAW!"
+      draw_emoji
       @game_over = true
     end
-    if board.board_full == true
+    if (check_horizontal == "X" || check_vertical == "X" ||
+       check_diagonal_up_right == "X" || check_diagonal_down_right == "X")
+      puts ""
+      firework_emoji
+      puts "Congrats! The player has won the game!"
+      firework_emoji
       @game_over = true
     end
     if @game_over == false
       board.computer_turn
       if (check_horizontal == "O" || check_vertical == "O" ||
-         check_diagonal_up_right == "O" || check_diagonal_down_right == "O")#check_diagonal_2 == "O")
+         check_diagonal_up_right == "O" || check_diagonal_down_right == "O")
         puts ""
-        13.times do
-          print "\u{1F6A8}"
-        end
-        puts ""
+        alarm_emoji
         puts "MACHINE TAKEOVER IMMINENT!"
-        13.times do
-          print "\u{1F6A8}"
-        end
-        puts ""
+        alarm_emoji
         @game_over = true
       end
     end
+  end
+
+  def firework_emoji
+    19.times do
+      print "\u{1F386}"
+    end
+    puts ""
+  end
+
+  def alarm_emoji
+    13.times do
+      print "\u{1F6A8}"
+    end
+    puts ""
+  end
+
+  def draw_emoji
+    16.times do
+      print "✏️"
+    end
+    puts ""
   end
 
   def check_horizontal
