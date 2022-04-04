@@ -50,5 +50,4 @@ class Game
       play_game(get_user_input)
     end
   end
-
 end

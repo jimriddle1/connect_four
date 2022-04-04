@@ -1,6 +1,4 @@
 class Board
-  require 'rspec'
-  require 'pry'
   attr_reader :board_hash, :board_full
 
   def initialize
@@ -17,25 +15,28 @@ class Board
 
   def print_board
     puts "ABCDEFG"
-    # counter = 0
+    #puts "🅰 🅱 🅲 🅳 🅴 🅵 🅶"
     6.times do |counter|
       board_hash.keys.each do |key|
+        # if board_hash[key][counter] == 'X'
+        #   print "\u{1F7E1}"
+        # elsif board_hash[key][counter] == 'O'
+        #   print "\u{1F534}"
+        # else
+        #   print "⚫"
         print board_hash[key][counter]
+        #end
       end
       puts ''
-      # counter += 1
     end
-    return
   end
 
   def get_user_input
-    # user_input = ""
     puts "Enter A-G to place a piece:"
     user_input = gets.chomp.upcase.to_sym
   end
 
   def is_column_full?(column)
-    # require 'pry'; binding.pry
     @board_hash[column.to_sym].include?('.')
   end
 
@@ -62,10 +63,8 @@ class Board
       @board_full = true
     else
       user_input = get_user_input
-      # require 'pry'; binding.pry
       if within_key_range(user_input) == false
         puts "Invalid input, must be A-G."
-        # require 'pry'; binding.pry
         player_turn
       elsif is_column_full?(user_input) == false
         puts "Invalid input, column full, choose another column."
@@ -88,22 +87,4 @@ class Board
       add_piece(computer_array[0], 'O')
       print_board
   end
-
-  # def check_win_condition(array)
-  # counter = 0
-  # x_counter = 1
-  # array.each do |index|
-  #   if array[counter] == "x" && array[counter + 1] == "x"
-  #     x_counter += 1
-  #     # require 'pry': binding.pry
-  #   end
-  #   counter += 1
-  # end
-  # return x_counter
-  # end
-
 end
-
-# board = Board.new
-# board.print_board
-# require 'pry'; binding pry
