@@ -19,7 +19,7 @@ attr_reader :board, :game_over
       @game_over = true
     end
     if (check_horizontal == "X" || check_vertical == "X" ||
-       check_diagonal_up_right == "X" || check_diagonal_down_right == "X") #check_diagonal_2 == "X")
+       check_diagonal_up_right == "X" || check_diagonal_down_right == "X")
       puts ""
       firework_emoji
       puts "Congrats! The player has won the game!"
@@ -28,8 +28,8 @@ attr_reader :board, :game_over
     end
     if @game_over == false
       board.computer_turn
-      if (check_horizontal == "0" || check_vertical == "0" ||
-         check_diagonal_up_right == "0" || check_diagonal_down_right == "0")#check_diagonal_2 == "O")
+      if (check_horizontal == "O" || check_vertical == "O" ||
+         check_diagonal_up_right == "O" || check_diagonal_down_right == "O")
         puts ""
         alarm_emoji
         puts "MACHINE TAKEOVER IMMINENT!"
