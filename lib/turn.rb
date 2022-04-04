@@ -19,7 +19,7 @@ attr_reader :board, :game_over
       @game_over = true
     end
     if (check_horizontal == "X" || check_vertical == "X" ||
-       check_diagonal_up_right == "X" || check_diagonal_down_right == "X")
+       check_diagonal(1) == "X" || check_diagonal(-1) == "X")
       puts ""
       firework_emoji
       puts "Congrats! The player has won the game!"
@@ -29,7 +29,7 @@ attr_reader :board, :game_over
     if @game_over == false
       board.computer_turn
       if (check_horizontal == "O" || check_vertical == "O" ||
-         check_diagonal_up_right == "O" || check_diagonal_down_right == "O")
+         check_diagonal(1) == "O" || check_diagonal(-1) == "O")
         puts ""
         alarm_emoji
         puts "MACHINE TAKEOVER IMMINENT!"
@@ -62,8 +62,6 @@ attr_reader :board, :game_over
 
   def check_horizontal
     winner_array = []
-    winner = ""
-    #binding.pry
     index_counter = 0
     7.times do
       check_array = []
@@ -71,19 +69,9 @@ attr_reader :board, :game_over
         check_array << (board.board_hash[key][index_counter])
       end
       index_counter += 1
-      #binding.pry
       winner_array << check_win_condition(check_array)
     end
-    #binding.pry
     check_winner(winner_array)
-    # if winner_array.include?("X")
-    #   winner = "X"
-    # elsif winner_array.include?("O")
-    #   winner = "O"
-    # else
-    #   winner = ""
-    # end
-    # return winner
   end
 
   def check_winner(winner_array)
@@ -97,73 +85,58 @@ attr_reader :board, :game_over
     return winner
   end
 
-  def check_diagonal_up_right
-    winner_array = []
-    winner = ""
-    custom_key_array = [6, 6, 6, 5, 4, 3]
-    starting_index_array = [2, 1, 0, 0, 0, 0]
-    length_array = [4, 5, 6, 6, 5, 4]
-      6.times do
-        check_array = []
-        index_counter = starting_index_array[0]
-        key_counter = custom_key_array[0]
-        length_array[0].times do
-          check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
-          index_counter += 1
-          key_counter -= 1
-        end
-        #puts check_array
-        winner_array << check_win_condition(check_array)
-        custom_key_array.shift
-        starting_index_array.shift
-        length_array.shift
-      end
-    if winner_array.include?("X")
-      winner = "X"
-    elsif winner_array.include?("O")
-      winner = "O"
-    else
-      winner = ""
-    end
-    return winner
-  end
+  # def check_diagonal_up_right
+  #   winner_array = []
+  #   winner = ""
+  #   custom_key_array = [6, 6, 6, 5, 4, 3]
+  #   starting_index_array = [2, 1, 0, 0, 0, 0]
+  #   length_array = [4, 5, 6, 6, 5, 4]
+  #     6.times do
+  #       check_array = []
+  #       index_counter = starting_index_array[0]
+  #       key_counter = custom_key_array[0]
+  #       length_array[0].times do
+  #         check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
+  #         index_counter += 1
+  #         key_counter -= 1
+  #       end
+  #       winner_array << check_win_condition(check_array)
+  #       custom_key_array.shift
+  #       starting_index_array.shift
+  #       length_array.shift
+  #     end
+  #   check_winner(winner_array)
+  # end
 
-  def check_diagonal_down_right
-    winner_array = []
-    winner = ""
-    custom_key_array = [0, 0, 0, 1, 2, 3]
-    starting_index_array = [2, 1, 0, 0, 0, 0]
-    length_array = [4, 5, 6, 6, 5, 4]
-      6.times do
-        check_array = []
-        index_counter = starting_index_array[0]
-        key_counter = custom_key_array[0]
-
-        length_array[0].times do
-
-          check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
-          index_counter += 1
-          key_counter += 1
-
-        end
-        winner_array << check_win_condition(check_array)
-        custom_key_array.shift
-        starting_index_array.shift
-        length_array.shift
-      end
-    if winner_array.include?("X")
-      winner = "X"
-    elsif winner_array.include?("O")
-      winner = "O"
-    else
-      winner = ""
-    end
-    return winner
-  end
+  # def check_diagonal_down_right
+  #   winner_array = []
+  #   winner = ""
+  #   custom_key_array = [0, 0, 0, 1, 2, 3]
+  #   starting_index_array = [2, 1, 0, 0, 0, 0]
+  #   length_array = [4, 5, 6, 6, 5, 4]
+  #     6.times do
+  #       check_array = []
+  #       index_counter = starting_index_array[0]
+  #       key_counter = custom_key_array[0]
+  #
+  #       length_array[0].times do
+  #
+  #         check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
+  #         index_counter += 1
+  #         key_counter += 1
+  #
+  #       end
+  #       winner_array << check_win_condition(check_array)
+  #       custom_key_array.shift
+  #       starting_index_array.shift
+  #       length_array.shift
+  #     end
+  #   check_winner(winner_array)
+  # end
 
   def check_diagonal(number)
     winner_array = []
-    winner = ""
+    #winner = ""
     if number == 1
       custom_key_array = [0, 0, 0, 1, 2, 3]
     else
@@ -177,25 +150,16 @@ attr_reader :board, :game_over
         key_counter = custom_key_array[0]
 
         length_array[0].times do
-
           check_array << (board.board_hash[board.board_hash.keys[key_counter]][index_counter])
           index_counter += 1
           key_counter += number
-
         end
         winner_array << check_win_condition(check_array)
         custom_key_array.shift
         starting_index_array.shift
         length_array.shift
       end
-    if winner_array.include?("X")
-      winner = "X"
-    elsif winner_array.include?("O")
-      winner = "O"
-    else
-      winner = ""
-    end
-    return winner
+    check_winner(winner_array)
   end
 
   def check_vertical
@@ -205,15 +169,7 @@ attr_reader :board, :game_over
     board.board_hash.keys.each do |key|
       winner_array << check_win_condition(board.board_hash[key])
     end
-    # binding.pry
-    if winner_array.include?("X")
-      winner = "X"
-    elsif winner_array.include?("O")
-      winner = "O"
-    else
-      winner = ""
-    end
-    return winner
+    check_winner(winner_array)
   end
 
   def check_win_condition(array)
@@ -231,10 +187,4 @@ attr_reader :board, :game_over
     end
     return winner
   end
-
-
-
-
-
-
 end
