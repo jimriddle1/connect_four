@@ -112,13 +112,13 @@ RSpec.describe Turn do
 
   it "checks diag_up_right win condition_2" do
       board1 = Board.new
-      board1.board_hash[:A] = ['X','.','O','.','.','.']
+      board1.board_hash[:A] = ['.','.','O','.','.','.']
       board1.board_hash[:B] = ['X','X','O','.','.','.']
-      board1.board_hash[:C] = ['X','.','X','.','.','.']
-      board1.board_hash[:D] = ['.','.','X','X','.','.']
+      board1.board_hash[:C] = ['.','.','X','.','.','.']
+      board1.board_hash[:D] = ['.','X','X','X','.','.']
       board1.board_hash[:E] = ['.','.','X','.','.','.']
-      board1.board_hash[:F] = ['.','.','O','.','.','.']
-      board1.board_hash[:G] = ['.','.','O','.','.','.']
+      board1.board_hash[:F] = ['.','.','O','X','.','.']
+      board1.board_hash[:G] = ['.','.','O','.','X','.']
       turn = Turn.new(board1)
     expect(turn.check_diagonal(1)).to eq("X")
   end
