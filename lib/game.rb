@@ -44,6 +44,16 @@ class Game
       puts "Game is over! Enter 'p' to play again or 'q' to quit:"
       @turn = Turn.new(board = Board.new)
       play_game(get_user_input)
+    elsif input == 'E'
+      @turn.board.toggle_emoji_board
+      @turn.board.print_board
+      while @turn.game_over == false
+        @turn.takes_turn
+      end
+      puts "Game is over! Enter 'p' to play again or 'q' to quit:"
+      @turn = Turn.new(board = Board.new)
+      play_game(get_user_input)
+      @turn.board.toggle_emoji_board
     else
       puts "Invalid input, please try again."
       puts "Enter p to play. Enter q to quit:"
