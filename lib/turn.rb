@@ -65,21 +65,20 @@ attr_reader :board, :game_over
       board.board_hash.keys.each do |key|
         check_array << (board.board_hash[key][index])
       end
-      #index_counter += 1
       winner_array << check_win_condition(check_array)
     end
     check_winner(winner_array)
   end
 
-  def check_diagonal(number)
-    winner_array = []
+  def check_diagonal(number) #1 or -1 depending to cover both orientations
+    winner_array = [] #store if a winner was found and what piece
     if number == 1
-      custom_key_array = [0, 0, 0, 1, 2, 3]
+      custom_key_array = [0, 0, 0, 1, 2, 3] #starting key (A, A, A, B, C, D)
     else
-      custom_key_array = [6, 6, 6, 5, 4, 3]
+      custom_key_array = [6, 6, 6, 5, 4, 3] #starting key (G, G, G, F, E, D)
     end
-    starting_index_array = [2, 1, 0, 0, 0, 0]
-    length_array = [4, 5, 6, 6, 5, 4]
+    starting_index_array = [2, 1, 0, 0, 0, 0] #starting index
+    length_array = [4, 5, 6, 6, 5, 4] #how many iterations to go through
       6.times do
         check_array = []
         index_counter = starting_index_array[0]

@@ -9,15 +9,6 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  xit "can take a turn" do
-    board = Board.new
-    turn = Turn.new(board)
-    # binding.pry
-    turn.takes_turn
-    # binding.pry
-    expect(turn.board.is_board_full?). to eq(false)
-  end
-
   it "checks win condition_1" do
     board = Board.new
     board.board_hash[:A] = ['O','O','X','X','X','X']
