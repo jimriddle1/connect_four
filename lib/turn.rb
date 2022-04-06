@@ -70,7 +70,7 @@ attr_reader :board, :game_over
     check_winner(winner_array)
   end
 
-  def check_diagonal(number) #1 or -1 depending to cover both orientations
+  def check_diagonal(number) #1 or -1 to cover both orientations
     winner_array = [] #store if a winner was found and what piece
     if number == 1
       custom_key_array = [0, 0, 0, 1, 2, 3] #starting key (A, A, A, B, C, D)
