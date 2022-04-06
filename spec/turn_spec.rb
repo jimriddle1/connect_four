@@ -95,20 +95,9 @@ RSpec.describe Turn do
     expect(turn.check_horizontal).to eq("X")
   end
 
-  xit "checks diag_down_right win condition_1" do
-    board1 = Board.new
-    board1.board_hash[:A] = ['01','02','03','04','05','06']
-    board1.board_hash[:B] = ['07','08','09','10','11','12']
-    board1.board_hash[:C] = ['13','14','15','16','17','18']
-    board1.board_hash[:D] = ['19','20','21','22','23','24']
-    board1.board_hash[:E] = ['25','26','27','28','29','30']
-    board1.board_hash[:F] = ['31','32','33','34','35','36']
-    board1.board_hash[:G] = ['37','38','39','40','41','42']
-    turn = Turn.new(board1)
-    expect(turn.check_diagonal(1)).to eq("O")
-  end
 
-  it "checks diag_up_right win condition_11" do
+  it "checks diag_up_right win condition_1" do
+      #this was to see where we were when enumerating through using diagonal testing
     board1 = Board.new
     board1.board_hash[:A] = ['01','02','03','04','05','06']
     board1.board_hash[:B] = ['07','08','09','10','11','12']
@@ -120,4 +109,31 @@ RSpec.describe Turn do
     turn = Turn.new(board1)
     expect(turn.check_diagonal(-1)).to eq("")
   end
+
+  it "checks diag_up_right win condition_2" do
+      board1 = Board.new
+      board1.board_hash[:A] = ['.','.','O','.','.','.']
+      board1.board_hash[:B] = ['X','X','O','.','.','.']
+      board1.board_hash[:C] = ['.','.','X','.','.','.']
+      board1.board_hash[:D] = ['.','X','X','X','.','.']
+      board1.board_hash[:E] = ['.','.','X','.','.','.']
+      board1.board_hash[:F] = ['.','.','O','X','.','.']
+      board1.board_hash[:G] = ['.','.','O','.','X','.']
+      turn = Turn.new(board1)
+    expect(turn.check_diagonal(1)).to eq("X")
+  end
+
+  it "checks diag_up_right win condition_3" do
+      board1 = Board.new
+      board1.board_hash[:A] = ['X','.','O','.','O','.']
+      board1.board_hash[:B] = ['X','X','O','O','.','.']
+      board1.board_hash[:C] = ['X','.','O','.','.','.']
+      board1.board_hash[:D] = ['.','O','X','X','.','.']
+      board1.board_hash[:E] = ['.','.','X','.','.','.']
+      board1.board_hash[:F] = ['.','.','O','.','.','.']
+      board1.board_hash[:G] = ['.','.','O','.','.','.']
+      turn = Turn.new(board1)
+    expect(turn.check_diagonal(-1)).to eq("O")
+  end
+
 end
