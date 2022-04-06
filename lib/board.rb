@@ -72,7 +72,6 @@ class Board
 
   def player_turn
     if is_board_full?
-      print_board
       @board_full = true
     else
       user_input = get_user_input
