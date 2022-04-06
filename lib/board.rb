@@ -1,7 +1,8 @@
 class Board
-  attr_reader :board_hash, :board_full
+  attr_reader :board_hash, :board_full, :emoji_board
 
   def initialize
+    @emoji_board = false
     @board_full = false
     @board_hash = {A: [".",".",".",".",".",".",],
                    B: [".",".",".",".",".",".",],
@@ -13,21 +14,33 @@ class Board
                   }
   end
 
+  def toggle_emoji_board
+    @emoji_board = !@emoji_board
+  end
+
   def print_board
-    puts "ABCDEFG"
-    #puts "🅰 🅱 🅲 🅳 🅴 🅵 🅶"
-    6.times do |counter|
-      board_hash.keys.each do |key|
-        # if board_hash[key][counter] == 'X'
-        #   print "\u{1F7E1}"
-        # elsif board_hash[key][counter] == 'O'
-        #   print "\u{1F534}"
-        # else
-        #   print "⚫"
-        print board_hash[key][counter]
-        #end
+    if @emoji_board
+      puts "🅰 🅱 🅲 🅳 🅴 🅵 🅶"
+      6.times do |counter|
+        board_hash.keys.each do |key|
+            if board_hash[key][counter] == 'X'
+              print "\u{1F7E1}"
+            elsif board_hash[key][counter] == 'O'
+              print "\u{1F534}"
+            else
+              print "⚫"
+            end
+          end
+          puts ''
+        end
+    else
+      puts "ABCDEFG"
+      6.times do |counter|
+        board_hash.keys.each do |key|
+          print board_hash[key][counter]
+        end
+        puts ''
       end
-      puts ''
     end
   end
 
